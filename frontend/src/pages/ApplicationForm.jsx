@@ -1,8 +1,39 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const API = import.meta.env.VITE_API_URL !== undefined && import.meta.env.VITE_API_URL !== ""
   ? import.meta.env.VITE_API_URL
   : (import.meta.env.PROD ? "" : "http://localhost:5000");
+
+export const TEAM_MEMBERS = [
+  { id: "kalam", name: "Kalam", role: "Team Lead", avatar: "👑", isDefault: true, path: "/" },
+  { id: "asmi", name: "Asmi", role: "Talent Specialist", avatar: "💼", isDefault: false, path: "/asmi" },
+  { id: "sudhan", name: "Sudhan", role: "Career Advisor", avatar: "🚀", isDefault: false, path: "/sudhan" },
+  { id: "sathik", name: "Sathik", role: "Acquisition Lead", avatar: "🎯", isDefault: false, path: "/sathik" },
+];
+
+export const RECRUITERS_BY_ID = Object.fromEntries(TEAM_MEMBERS.map((m) => [m.id, m]));
+export const DEFAULT_RECRUITER = RECRUITERS_BY_ID.kalam;
+
+export function resolveRecruiter() {
+  if (typeof window === "undefined") return DEFAULT_RECRUITER;
+
+  // 1. Check URL query params (?user=asmi or ?ref=asmi or ?recruiter=asmi)
+  const searchParams = new URLSearchParams(window.location.search);
+  const q = (searchParams.get("user") || searchParams.get("ref") || searchParams.get("recruiter") || searchParams.get("u") || "").toLowerCase().trim();
+  if (q && RECRUITERS_BY_ID[q]) {
+    return RECRUITERS_BY_ID[q];
+  }
+
+  // 2. Check path segments (e.g. /asmi, /users/asmi, /sudhan, /sathik, /kalam)
+  const segments = window.location.pathname.toLowerCase().split("/").filter(Boolean);
+  for (const seg of segments) {
+    if (RECRUITERS_BY_ID[seg]) {
+      return RECRUITERS_BY_ID[seg];
+    }
+  }
+
+  return DEFAULT_RECRUITER;
+}
 
 const EXPERIENCE_OPTIONS = [
   { id: "Above 1 Year Experience", label: "Above 1 Year Experience", desc: "1 to 3 years of practical work experience" },
@@ -32,10 +63,19 @@ export default function ApplicationForm() {
     website: "", // honeypot
   });
 
+  const [activeRecruiter, setActiveRecruiter] = useState(resolveRecruiter);
   const [errors, setErrors] = useState({});
   const [submitting, setSubmitting] = useState(false);
   const [submittedData, setSubmittedData] = useState(null);
   const [apiError, setApiError] = useState("");
+
+  useEffect(() => {
+    const handleLocationChange = () => {
+      setActiveRecruiter(resolveRecruiter());
+    };
+    window.addEventListener("popstate", handleLocationChange);
+    return () => window.removeEventListener("popstate", handleLocationChange);
+  }, []);
 
   const handleChange = (field, value) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
@@ -87,10 +127,15 @@ export default function ApplicationForm() {
 
     setSubmitting(true);
     try {
+      const payload = {
+        ...formData,
+        recruiter: activeRecruiter.name,
+      };
+
       const res = await fetch(`${API}/api/apply`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(payload),
       });
 
       const data = await res.json().catch(() => ({}));
@@ -99,7 +144,7 @@ export default function ApplicationForm() {
         throw new Error(data.message || `Server returned ${res.status}`);
       }
 
-      setSubmittedData({ ...formData });
+      setSubmittedData({ ...payload });
       window.scrollTo({ top: 0, behavior: "smooth" });
     } catch (err) {
       setApiError(err.message || "Failed to submit application. Please check your connection and try again.");
@@ -154,6 +199,13 @@ export default function ApplicationForm() {
 
           <div className="mt-6 bg-slate-50/80 border border-slate-200/70 rounded-2xl p-5 text-left space-y-3">
             <div className="flex justify-between items-center text-xs sm:text-sm border-b border-slate-200/60 pb-2.5">
+              <span className="text-slate-500 font-medium">Assigned Recruiter:</span>
+              <span className="text-indigo-700 font-bold flex items-center gap-1.5">
+                <span>{activeRecruiter.avatar}</span>
+                {submittedData.recruiter || activeRecruiter.name}
+              </span>
+            </div>
+            <div className="flex justify-between items-center text-xs sm:text-sm border-b border-slate-200/60 pb-2.5">
               <span className="text-slate-500 font-medium">Email:</span>
               <span className="text-slate-900 font-medium">{submittedData.email}</span>
             </div>
@@ -183,9 +235,20 @@ export default function ApplicationForm() {
             </div>
           </div>
 
+          <div className="mt-5 p-3.5 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-between gap-3">
+            <span className="text-xs text-slate-600 font-medium">Need the syllabus for reference?</span>
+            <a
+              href="/LevLox_20_Day_Live_Class_Agenda.pdf"
+              download="LevLox_20_Day_Live_Class_Agenda.pdf"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-indigo-50 text-indigo-700 hover:bg-indigo-100 text-xs font-bold border border-indigo-200 transition"
+            >
+              📥 Download Agenda PDF
+            </a>
+          </div>
+
           <button
             onClick={handleReset}
-            className="mt-7 w-full py-3.5 px-6 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-semibold transition duration-150 shadow-sm text-sm cursor-pointer"
+            className="mt-6 w-full py-3.5 px-6 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-semibold transition duration-150 shadow-sm text-sm cursor-pointer"
           >
             Submit Another Application
           </button>
@@ -211,9 +274,18 @@ export default function ApplicationForm() {
               />
             </div>
             
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-indigo-50 text-indigo-700 border border-indigo-100 mb-3">
-              <span className="w-1.5 h-1.5 rounded-full bg-indigo-600"></span>
-              Fast-Track Candidate Application
+            {/* Recruiter Badge (Determined purely by URL path) */}
+            <div className="flex justify-center mb-4">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold border bg-gradient-to-r from-slate-50 to-indigo-50/40 border-slate-200 shadow-xs">
+                <span className="flex h-2 w-2 relative">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                </span>
+                <span className="text-slate-500">Form assigned to:</span>
+                <span className="text-indigo-900 font-bold flex items-center gap-1.5">
+                  <span>{activeRecruiter.avatar}</span> {activeRecruiter.name}
+                </span>
+              </div>
             </div>
 
             <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
@@ -222,6 +294,57 @@ export default function ApplicationForm() {
             <p className="mt-2 text-slate-500 text-sm leading-relaxed max-w-md mx-auto">
               Please fill out these few quick details so our team can evaluate your profile and reach out with the best opportunity.
             </p>
+          </div>
+
+          {/* 20-Day Live Class Agenda & Projects PDF Download Banner */}
+          <div className="mb-7 p-4 sm:p-5 rounded-2xl bg-gradient-to-br from-indigo-50/90 via-purple-50/40 to-slate-50 border border-indigo-100 shadow-xs">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <div className="flex items-start gap-3.5">
+                <div className="w-11 h-11 rounded-xl bg-indigo-600 text-white flex items-center justify-center shrink-0 shadow-md shadow-indigo-600/20 mt-0.5">
+                  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                </div>
+                <div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-indigo-700 bg-indigo-100/80 px-2 py-0.5 rounded-md">
+                      20-Day Live Class
+                    </span>
+                    <span className="text-[11px] text-slate-500 font-medium">Full Agenda & Projects</span>
+                  </div>
+                  <h3 className="text-sm sm:text-base font-bold text-slate-900 mt-1">
+                    Course Curriculum & Live Projects Agenda
+                  </h3>
+                  <p className="text-xs text-slate-600 mt-0.5 leading-relaxed">
+                    Deep Learning &bull; Transformers &bull; LLMs &bull; RAG &bull; 9+ Hands-on Industry Projects
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2 w-full sm:w-auto shrink-0">
+                <a
+                  href="/LevLox_20_Day_Live_Class_Agenda.pdf"
+                  download="LevLox_20_Day_Live_Class_Agenda.pdf"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 active:scale-[0.98] text-white text-xs sm:text-sm font-bold shadow-md shadow-indigo-600/20 transition duration-150 cursor-pointer"
+                >
+                  <svg className="w-4 h-4 stroke-[2.5]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                  </svg>
+                  <span>Download Agenda PDF</span>
+                </a>
+                <a
+                  href="/LevLox_20_Day_Live_Class_Agenda.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center p-2.5 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 text-xs font-semibold shadow-xs transition"
+                  title="View PDF in new tab"
+                >
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </a>
+              </div>
+            </div>
           </div>
 
           {apiError && (
