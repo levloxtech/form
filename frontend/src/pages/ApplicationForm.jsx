@@ -185,11 +185,8 @@ export default function ApplicationForm() {
             />
           </div>
 
-          {/* Success Check Icon */}
-          <div className="mx-auto w-16 h-16 bg-emerald-50 border border-emerald-100 rounded-2xl flex items-center justify-center text-emerald-600 shadow-sm mb-5">
-            <svg className="w-8 h-8 stroke-[2.5]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-            </svg>
+          <div className="inline-block px-3 py-1 bg-emerald-50 text-emerald-700 font-bold text-xs uppercase tracking-wider rounded-full border border-emerald-200 mb-4">
+            Application Submitted
           </div>
 
           <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">Application Received!</h2>
@@ -200,8 +197,7 @@ export default function ApplicationForm() {
           <div className="mt-6 bg-slate-50/80 border border-slate-200/70 rounded-2xl p-5 text-left space-y-3">
             <div className="flex justify-between items-center text-xs sm:text-sm border-b border-slate-200/60 pb-2.5">
               <span className="text-slate-500 font-medium">Assigned Recruiter:</span>
-              <span className="text-indigo-700 font-bold flex items-center gap-1.5">
-                <span>{activeRecruiter.avatar}</span>
+              <span className="text-indigo-700 font-bold">
                 {submittedData.recruiter || activeRecruiter.name}
               </span>
             </div>
@@ -227,22 +223,19 @@ export default function ApplicationForm() {
             </div>
           </div>
 
-          <div className="mt-6 p-4 rounded-2xl bg-indigo-50/70 border border-indigo-100 text-xs sm:text-sm text-indigo-950 text-left flex items-start gap-3">
-            <span className="text-base text-indigo-600 mt-0.5">✨</span>
-            <div>
-              <strong className="text-indigo-950 block font-semibold mb-0.5">What happens next?</strong>
-              Our team will review your responses and connect with you on WhatsApp / Phone within 24 hours.
-            </div>
+          <div className="mt-6 p-4 rounded-2xl bg-indigo-50/70 border border-indigo-100 text-xs sm:text-sm text-indigo-950 text-left">
+            <strong className="text-indigo-950 block font-semibold mb-0.5">What happens next?</strong>
+            Our team will review your responses and connect with you on WhatsApp / Phone within 24 hours.
           </div>
 
           <div className="mt-5 p-3.5 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-between gap-3">
-            <span className="text-xs text-slate-600 font-medium">Need the complete syllabus for reference?</span>
+            <span className="text-xs text-slate-600 font-medium">Course Agenda:</span>
             <a
-              href="/LevLox_GenAI_Course_Curriculum.pdf"
-              download="LevLox_GenAI_Course_Curriculum.pdf"
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-indigo-50 text-indigo-700 hover:bg-indigo-100 text-xs font-bold border border-indigo-200 transition"
+              href="/20_days_agenda.pdf"
+              download="20_days_agenda.pdf"
+              className="inline-flex items-center px-3 py-1.5 rounded-lg bg-indigo-50 text-indigo-700 hover:bg-indigo-100 text-xs font-bold border border-indigo-200 transition"
             >
-              📥 Download Curriculum (PDF)
+              Download 20-Day Agenda (PDF)
             </a>
           </div>
 
@@ -276,15 +269,9 @@ export default function ApplicationForm() {
             
             {/* Recruiter Badge (Determined purely by URL path) */}
             <div className="flex justify-center mb-4">
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold border bg-gradient-to-r from-slate-50 to-indigo-50/40 border-slate-200 shadow-xs">
-                <span className="flex h-2 w-2 relative">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                </span>
+              <div className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-semibold border bg-slate-50 border-slate-200">
                 <span className="text-slate-500">Form assigned to:</span>
-                <span className="text-indigo-900 font-bold flex items-center gap-1.5">
-                  <span>{activeRecruiter.avatar}</span> {activeRecruiter.name}
-                </span>
+                <span className="text-indigo-900 font-bold">{activeRecruiter.name}</span>
               </div>
             </div>
 
@@ -296,67 +283,49 @@ export default function ApplicationForm() {
             </p>
           </div>
 
-          {/* Gen AI Course in 20 Days & 7+ Projects Curriculum PDF Download Banner */}
-          <div className="mb-7 rounded-2xl bg-gradient-to-br from-indigo-50/70 via-slate-50/50 to-white border border-indigo-100/90 p-5 shadow-xs relative overflow-hidden">
-            {/* Top accent line */}
+          {/* 20-Day Agenda PDF Download Banner */}
+          <div className="mb-7 rounded-2xl bg-gradient-to-br from-indigo-50/70 via-slate-50/50 to-white border border-indigo-100 p-5 shadow-xs relative overflow-hidden">
             <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-indigo-500 via-indigo-600 to-purple-600" />
 
-            <div className="flex items-start gap-3.5">
-              <div className="w-10 h-10 rounded-xl bg-indigo-600 text-white flex items-center justify-center shrink-0 shadow-md shadow-indigo-600/20 mt-0.5">
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
+            <div>
+              <div className="flex items-center gap-2 mb-1">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-indigo-700 bg-indigo-100/80 px-2 py-0.5 rounded-md">
+                  Course Curriculum
+                </span>
+                <span className="text-xs text-slate-500 font-medium">20 Days &bull; 7+ Hands-On Projects</span>
               </div>
-
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2 flex-wrap mb-1">
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-indigo-700 bg-indigo-100/80 px-2 py-0.5 rounded-md">
-                    Generative AI Course
-                  </span>
-                  <span className="text-xs text-slate-500 font-medium">20 Days &bull; 7+ Hands-On Projects</span>
-                </div>
-                <h3 className="text-sm sm:text-base font-bold text-slate-900 leading-snug">
-                  Gen AI Course in 20 Days with 7+ Projects
-                </h3>
-                <p className="text-xs text-slate-500 mt-1 leading-relaxed">
-                  Deep Learning &bull; Attention &bull; Transformers &bull; LLM Fundamentals &bull; RAG &bull; 10-Page Curriculum
-                </p>
-              </div>
+              <h3 className="text-sm sm:text-base font-bold text-slate-900 leading-snug">
+                Course Curriculum & Projects Agenda
+              </h3>
+              <p className="text-xs text-slate-500 mt-1 leading-relaxed">
+                Deep Learning &bull; Attention &bull; Transformers &bull; LLM Fundamentals &bull; RAG
+              </p>
             </div>
 
             {/* Action buttons row */}
             <div className="mt-4 pt-3.5 border-t border-slate-200/60 flex items-center gap-2.5">
               <a
-                href="/LevLox_GenAI_Course_Curriculum.pdf"
-                download="LevLox_GenAI_Course_Curriculum.pdf"
-                className="flex-1 inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-indigo-600 hover:bg-indigo-700 active:scale-[0.99] text-white text-xs sm:text-sm font-bold shadow-sm shadow-indigo-600/20 transition duration-150 cursor-pointer"
+                href="/20_days_agenda.pdf"
+                download="20_days_agenda.pdf"
+                className="flex-1 inline-flex items-center justify-center py-2.5 px-4 rounded-xl bg-indigo-600 hover:bg-indigo-700 active:scale-[0.99] text-white text-xs sm:text-sm font-bold shadow-sm shadow-indigo-600/20 transition duration-150 cursor-pointer"
               >
-                <svg className="w-4 h-4 stroke-[2.5]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                </svg>
-                <span>Download Curriculum PDF</span>
+                Download 20-Day Agenda (PDF)
               </a>
               <a
-                href="/LevLox_GenAI_Course_Curriculum.pdf"
+                href="/20_days_agenda.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-1.5 py-2.5 px-3.5 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 text-xs font-semibold shadow-xs transition"
+                className="inline-flex items-center justify-center py-2.5 px-4 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 text-xs font-semibold shadow-xs transition"
                 title="View PDF in new tab"
               >
-                <span>View</span>
-                <svg className="w-3.5 h-3.5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                </svg>
+                View PDF
               </a>
             </div>
           </div>
 
           {apiError && (
-            <div className="mb-6 p-4 rounded-2xl bg-rose-50 border border-rose-200 text-rose-700 text-sm flex items-start gap-3">
-              <svg className="w-5 h-5 text-rose-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-              </svg>
-              <div>{apiError}</div>
+            <div className="mb-6 p-4 rounded-2xl bg-rose-50 border border-rose-200 text-rose-700 text-sm">
+              {apiError}
             </div>
           )}
 
@@ -378,17 +347,12 @@ export default function ApplicationForm() {
                 Full Name <span className="text-rose-500">*</span>
               </label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
-                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                  </svg>
-                </div>
                 <input
                   type="text"
                   placeholder="e.g. Rahul Sharma"
                   value={formData.fullName}
                   onChange={(e) => handleChange("fullName", e.target.value)}
-                  className={`w-full pl-11 pr-4 py-3 bg-white border rounded-xl text-slate-900 placeholder-slate-400 text-sm transition outline-none focus:border-indigo-600 focus:ring-4 focus:ring-indigo-500/10 ${
+                  className={`w-full px-4 py-3 bg-white border rounded-xl text-slate-900 placeholder-slate-400 text-sm transition outline-none focus:border-indigo-600 focus:ring-4 focus:ring-indigo-500/10 ${
                     errors.fullName ? "border-rose-400 bg-rose-50/20" : "border-slate-200 hover:border-slate-300"
                   }`}
                 />
@@ -402,17 +366,12 @@ export default function ApplicationForm() {
                 Email Address <span className="text-rose-500">*</span>
               </label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
-                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                  </svg>
-                </div>
                 <input
                   type="email"
                   placeholder="name@example.com"
                   value={formData.email}
                   onChange={(e) => handleChange("email", e.target.value)}
-                  className={`w-full pl-11 pr-4 py-3 bg-white border rounded-xl text-slate-900 placeholder-slate-400 text-sm transition outline-none focus:border-indigo-600 focus:ring-4 focus:ring-indigo-500/10 ${
+                  className={`w-full px-4 py-3 bg-white border rounded-xl text-slate-900 placeholder-slate-400 text-sm transition outline-none focus:border-indigo-600 focus:ring-4 focus:ring-indigo-500/10 ${
                     errors.email ? "border-rose-400 bg-rose-50/20" : "border-slate-200 hover:border-slate-300"
                   }`}
                 />
@@ -426,17 +385,12 @@ export default function ApplicationForm() {
                 Phone Number / WhatsApp Number <span className="text-rose-500">*</span>
               </label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-emerald-600">
-                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2ZM12.05 20.16C10.57 20.16 9.12 19.76 7.85 19.01L7.55 18.83L4.43 19.65L5.26 16.61L5.07 16.3C4.24 14.98 3.81 13.47 3.81 11.91C3.81 7.37 7.5 3.68 12.05 3.68C14.25 3.68 16.32 4.54 17.88 6.1C19.44 7.66 20.29 9.72 20.29 11.92C20.28 16.46 16.59 20.16 12.05 20.16ZM16.57 14.36C16.32 14.23 15.1 13.63 14.87 13.55C14.65 13.46 14.48 13.42 14.32 13.67C14.15 13.92 13.68 14.48 13.53 14.64C13.39 14.81 13.25 14.83 13 14.71C12.75 14.58 11.95 14.32 11 13.48C10.26 12.82 9.77 12.01 9.62 11.76C9.48 11.51 9.61 11.38 9.73 11.25C9.84 11.14 9.98 10.96 10.11 10.81C10.23 10.66 10.28 10.55 10.36 10.39C10.44 10.22 10.4 10.08 10.34 9.95C10.28 9.83 9.78 8.6 9.58 8.09C9.37 7.6 9.17 7.66 9.02 7.66C8.87 7.65 8.71 7.65 8.54 7.65C8.38 7.65 8.11 7.71 7.89 7.96C7.66 8.21 7.03 8.79 7.03 10.01C7.03 11.23 7.92 12.4 8.04 12.57C8.17 12.73 9.78 15.22 12.24 16.28C12.83 16.53 13.28 16.68 13.64 16.79C14.23 16.98 14.76 16.96 15.19 16.89C15.67 16.82 16.67 16.29 16.88 15.71C17.08 15.14 17.08 14.65 17.02 14.54C16.96 14.44 16.82 14.48 16.57 14.36Z" />
-                  </svg>
-                </div>
                 <input
                   type="tel"
                   placeholder="e.g. 9876543210"
                   value={formData.phone}
                   onChange={(e) => handleChange("phone", e.target.value)}
-                  className={`w-full pl-11 pr-4 py-3 bg-white border rounded-xl text-slate-900 placeholder-slate-400 text-sm transition outline-none focus:border-indigo-600 focus:ring-4 focus:ring-indigo-500/10 ${
+                  className={`w-full px-4 py-3 bg-white border rounded-xl text-slate-900 placeholder-slate-400 text-sm transition outline-none focus:border-indigo-600 focus:ring-4 focus:ring-indigo-500/10 ${
                     errors.phone ? "border-rose-400 bg-rose-50/20" : "border-slate-200 hover:border-slate-300"
                   }`}
                 />
@@ -475,14 +429,10 @@ export default function ApplicationForm() {
                       </div>
                       <div
                         className={`w-5 h-5 rounded-full border flex items-center justify-center shrink-0 ml-2 mt-0.5 transition ${
-                          selected ? "border-indigo-600 bg-indigo-600 text-white" : "border-slate-300 bg-white"
+                          selected ? "border-indigo-600 bg-indigo-600" : "border-slate-300 bg-white"
                         }`}
                       >
-                        {selected && (
-                          <svg className="w-3 h-3 stroke-[3]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                          </svg>
-                        )}
+                        {selected && <div className="w-2 h-2 rounded-full bg-white" />}
                       </div>
                     </button>
                   );
@@ -514,8 +464,7 @@ export default function ApplicationForm() {
                       }`}
                     >
                       <div>
-                        <div className="font-semibold text-sm flex items-center gap-1.5">
-                          <span>{isPositive ? "⚡" : "⏳"}</span>
+                        <div className="font-semibold text-sm">
                           {opt.label}
                         </div>
                         <div className="text-xs text-slate-500 mt-0.5">{opt.desc}</div>
@@ -524,16 +473,12 @@ export default function ApplicationForm() {
                         className={`w-5 h-5 rounded-full border flex items-center justify-center shrink-0 ml-2 mt-0.5 transition ${
                           selected
                             ? isPositive
-                              ? "border-emerald-600 bg-emerald-600 text-white"
-                              : "border-slate-500 bg-slate-500 text-white"
+                              ? "border-emerald-600 bg-emerald-600"
+                              : "border-slate-500 bg-slate-500"
                             : "border-slate-300 bg-white"
                         }`}
                       >
-                        {selected && (
-                          <svg className="w-3 h-3 stroke-[3]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                          </svg>
-                        )}
+                        {selected && <div className="w-2 h-2 rounded-full bg-white" />}
                       </div>
                     </button>
                   );
@@ -566,8 +511,7 @@ export default function ApplicationForm() {
                       }`}
                     >
                       <div>
-                        <div className="font-semibold text-sm flex items-center gap-1.5">
-                          <span>{isYes ? "💎" : "⏳"}</span>
+                        <div className="font-semibold text-sm">
                           {opt.label}
                         </div>
                         <div className="text-xs text-slate-500 mt-0.5">{opt.desc}</div>
@@ -576,16 +520,12 @@ export default function ApplicationForm() {
                         className={`w-5 h-5 rounded-full border flex items-center justify-center shrink-0 ml-2 mt-0.5 transition ${
                           selected
                             ? isYes
-                              ? "border-indigo-600 bg-indigo-600 text-white"
-                              : "border-slate-500 bg-slate-500 text-white"
+                              ? "border-indigo-600 bg-indigo-600"
+                              : "border-slate-500 bg-slate-500"
                             : "border-slate-300 bg-white"
                         }`}
                       >
-                        {selected && (
-                          <svg className="w-3 h-3 stroke-[3]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                          </svg>
-                        )}
+                        {selected && <div className="w-2 h-2 rounded-full bg-white" />}
                       </div>
                     </button>
                   );
@@ -602,20 +542,9 @@ export default function ApplicationForm() {
                 className="w-full py-4 px-6 rounded-2xl font-bold text-white bg-gradient-to-r from-indigo-600 via-indigo-700 to-purple-600 hover:from-indigo-700 hover:via-indigo-800 hover:to-purple-700 active:scale-[0.99] transition duration-150 shadow-lg shadow-indigo-600/20 disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2.5 text-base cursor-pointer tracking-wide"
               >
                 {submitting ? (
-                  <>
-                    <svg className="animate-spin h-5 w-5 text-white" fill="none" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z" />
-                    </svg>
-                    <span>Submitting Application...</span>
-                  </>
+                  <span>Submitting Application...</span>
                 ) : (
-                  <>
-                    <span>Submit Application</span>
-                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                    </svg>
-                  </>
+                  <span>Submit Application</span>
                 )}
               </button>
             </div>
