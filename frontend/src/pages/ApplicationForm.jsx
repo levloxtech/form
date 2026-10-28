@@ -297,53 +297,57 @@ export default function ApplicationForm() {
           </div>
 
           {/* 20-Day Live Class Agenda & Projects PDF Download Banner */}
-          <div className="mb-7 p-4 sm:p-5 rounded-2xl bg-gradient-to-br from-indigo-50/90 via-purple-50/40 to-slate-50 border border-indigo-100 shadow-xs">
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-              <div className="flex items-start gap-3.5">
-                <div className="w-11 h-11 rounded-xl bg-indigo-600 text-white flex items-center justify-center shrink-0 shadow-md shadow-indigo-600/20 mt-0.5">
-                  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                  </svg>
-                </div>
-                <div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-indigo-700 bg-indigo-100/80 px-2 py-0.5 rounded-md">
-                      20-Day Live Class
-                    </span>
-                    <span className="text-[11px] text-slate-500 font-medium">Full Agenda & Projects</span>
-                  </div>
-                  <h3 className="text-sm sm:text-base font-bold text-slate-900 mt-1">
-                    Course Curriculum & Live Projects Agenda
-                  </h3>
-                  <p className="text-xs text-slate-600 mt-0.5 leading-relaxed">
-                    Deep Learning &bull; Transformers &bull; LLMs &bull; RAG &bull; 9+ Hands-on Industry Projects
-                  </p>
-                </div>
+          <div className="mb-7 rounded-2xl bg-gradient-to-br from-indigo-50/70 via-slate-50/50 to-white border border-indigo-100/90 p-5 shadow-xs relative overflow-hidden">
+            {/* Top accent line */}
+            <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-indigo-500 via-indigo-600 to-purple-600" />
+
+            <div className="flex items-start gap-3.5">
+              <div className="w-10 h-10 rounded-xl bg-indigo-600 text-white flex items-center justify-center shrink-0 shadow-md shadow-indigo-600/20 mt-0.5">
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
               </div>
 
-              <div className="flex items-center gap-2 w-full sm:w-auto shrink-0">
-                <a
-                  href="/LevLox_20_Day_Live_Class_Agenda.pdf"
-                  download="LevLox_20_Day_Live_Class_Agenda.pdf"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 active:scale-[0.98] text-white text-xs sm:text-sm font-bold shadow-md shadow-indigo-600/20 transition duration-150 cursor-pointer"
-                >
-                  <svg className="w-4 h-4 stroke-[2.5]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                  </svg>
-                  <span>Download Agenda PDF</span>
-                </a>
-                <a
-                  href="/LevLox_20_Day_Live_Class_Agenda.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center p-2.5 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 text-xs font-semibold shadow-xs transition"
-                  title="View PDF in new tab"
-                >
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                  </svg>
-                </a>
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center gap-2 flex-wrap mb-1">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-indigo-700 bg-indigo-100/80 px-2 py-0.5 rounded-md">
+                    20-Day Live Class
+                  </span>
+                  <span className="text-xs text-slate-500 font-medium">Curriculum & 9+ Projects</span>
+                </div>
+                <h3 className="text-sm sm:text-base font-bold text-slate-900 leading-snug">
+                  Course Curriculum & Live Projects Agenda
+                </h3>
+                <p className="text-xs text-slate-500 mt-1 leading-relaxed">
+                  Deep Learning &bull; Transformers &bull; LLMs &bull; RAG &bull; Hands-on Industry Projects
+                </p>
               </div>
+            </div>
+
+            {/* Action buttons row */}
+            <div className="mt-4 pt-3.5 border-t border-slate-200/60 flex items-center gap-2.5">
+              <a
+                href="/LevLox_20_Day_Live_Class_Agenda.pdf"
+                download="LevLox_20_Day_Live_Class_Agenda.pdf"
+                className="flex-1 inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-indigo-600 hover:bg-indigo-700 active:scale-[0.99] text-white text-xs sm:text-sm font-bold shadow-sm shadow-indigo-600/20 transition duration-150 cursor-pointer"
+              >
+                <svg className="w-4 h-4 stroke-[2.5]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
+                <span>Download Agenda PDF</span>
+              </a>
+              <a
+                href="/LevLox_20_Day_Live_Class_Agenda.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-1.5 py-2.5 px-3.5 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 text-xs font-semibold shadow-xs transition"
+                title="View PDF in new tab"
+              >
+                <span>View</span>
+                <svg className="w-3.5 h-3.5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
             </div>
           </div>
 
