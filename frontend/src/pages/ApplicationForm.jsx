@@ -236,13 +236,13 @@ export default function ApplicationForm() {
           </div>
 
           <div className="mt-5 p-3.5 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-between gap-3">
-            <span className="text-xs text-slate-600 font-medium">Need the syllabus for reference?</span>
+            <span className="text-xs text-slate-600 font-medium">Need the complete syllabus for reference?</span>
             <a
-              href="/LevLox_20_Day_Live_Class_Agenda.pdf"
-              download="LevLox_20_Day_Live_Class_Agenda.pdf"
+              href="/LevLox_GenAI_Course_Curriculum.pdf"
+              download="LevLox_GenAI_Course_Curriculum.pdf"
               className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-indigo-50 text-indigo-700 hover:bg-indigo-100 text-xs font-bold border border-indigo-200 transition"
             >
-              📥 Download Agenda PDF
+              📥 Download Curriculum (PDF)
             </a>
           </div>
 
@@ -296,7 +296,7 @@ export default function ApplicationForm() {
             </p>
           </div>
 
-          {/* 20-Day Live Class Agenda & Projects PDF Download Banner */}
+          {/* Gen AI Course in 20 Days & 7+ Projects Curriculum PDF Download Banner */}
           <div className="mb-7 rounded-2xl bg-gradient-to-br from-indigo-50/70 via-slate-50/50 to-white border border-indigo-100/90 p-5 shadow-xs relative overflow-hidden">
             {/* Top accent line */}
             <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-indigo-500 via-indigo-600 to-purple-600" />
@@ -311,15 +311,15 @@ export default function ApplicationForm() {
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 flex-wrap mb-1">
                   <span className="text-[10px] font-bold uppercase tracking-wider text-indigo-700 bg-indigo-100/80 px-2 py-0.5 rounded-md">
-                    20-Day Live Class
+                    Generative AI Course
                   </span>
-                  <span className="text-xs text-slate-500 font-medium">Curriculum & 9+ Projects</span>
+                  <span className="text-xs text-slate-500 font-medium">20 Days &bull; 7+ Hands-On Projects</span>
                 </div>
                 <h3 className="text-sm sm:text-base font-bold text-slate-900 leading-snug">
-                  Course Curriculum & Live Projects Agenda
+                  Gen AI Course in 20 Days with 7+ Projects
                 </h3>
                 <p className="text-xs text-slate-500 mt-1 leading-relaxed">
-                  Deep Learning &bull; Transformers &bull; LLMs &bull; RAG &bull; Hands-on Industry Projects
+                  Deep Learning &bull; Attention &bull; Transformers &bull; LLM Fundamentals &bull; RAG &bull; 10-Page Curriculum
                 </p>
               </div>
             </div>
@@ -327,17 +327,17 @@ export default function ApplicationForm() {
             {/* Action buttons row */}
             <div className="mt-4 pt-3.5 border-t border-slate-200/60 flex items-center gap-2.5">
               <a
-                href="/LevLox_20_Day_Live_Class_Agenda.pdf"
-                download="LevLox_20_Day_Live_Class_Agenda.pdf"
+                href="/LevLox_GenAI_Course_Curriculum.pdf"
+                download="LevLox_GenAI_Course_Curriculum.pdf"
                 className="flex-1 inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-indigo-600 hover:bg-indigo-700 active:scale-[0.99] text-white text-xs sm:text-sm font-bold shadow-sm shadow-indigo-600/20 transition duration-150 cursor-pointer"
               >
                 <svg className="w-4 h-4 stroke-[2.5]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                 </svg>
-                <span>Download Agenda PDF</span>
+                <span>Download Curriculum PDF</span>
               </a>
               <a
-                href="/LevLox_20_Day_Live_Class_Agenda.pdf"
+                href="/LevLox_GenAI_Course_Curriculum.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-1.5 py-2.5 px-3.5 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 text-xs font-semibold shadow-xs transition"
